@@ -8,21 +8,15 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
     sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router-vendor': ['react-router-dom'],
-          'chart-vendor': ['recharts'],
-          'map-vendor': ['leaflet', 'react-leaflet']
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          charts: ['recharts'],
+          maps: ['leaflet', 'react-leaflet']
         }
       }
     }
-  },
-  server: {
-    host: true,
-    port: 3000
   }
 });
