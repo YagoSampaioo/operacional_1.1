@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-yellow: #FFB400;
+  --color-yellow-light: #FFD673;
+  --color-yellow-dark: #B37D00;
+  --color-dark: #000000;
+  --color-dark-alt: #1A1A1A;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.tech-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-yellow-light),
+    var(--color-yellow),
+    var(--color-yellow-dark)
+  );
+  background-size: 200% 200%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+.glow {
+  filter: drop-shadow(0 0 10px var(--color-yellow));
+}
+
+.glow-text {
+  text-shadow: 0 0 10px var(--color-yellow);
+}
+
+.chrome {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 180, 0, 0.1),
+    rgba(255, 180, 0, 0.05)
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 180, 0, 0.1);
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--color-yellow);
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+
+.energy-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-yellow),
+    transparent
+  );
+  animation: pulse 2s ease infinite;
+}
+
+.glitch {
+  animation: glitch 0.2s ease infinite;
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Modern layout patterns */
+.page-container {
+  @apply min-h-screen bg-dark-900 text-white overflow-hidden relative;
+}
+
+.glass-card {
+  @apply bg-dark-100/30 backdrop-blur-lg border border-yellow-400/10 rounded-xl;
+}
+
+.tech-button {
+  @apply relative overflow-hidden rounded-lg px-6 py-3 font-medium transition-all duration-300;
+  background: linear-gradient(
+    90deg,
+    var(--color-yellow),
+    var(--color-yellow-dark)
+  );
+}
+
+.tech-button::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(
+    90deg,
+    var(--color-yellow-dark),
+    var(--color-yellow)
+  );
+}
+
+.tech-button:hover::before {
+  @apply opacity-100;
+}
+
+.tech-input {
+  @apply bg-dark-100/50 border border-yellow-400/20 rounded-lg px-4 py-3 text-white;
+  @apply focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400;
+  @apply transition-all duration-300;
+}
+
+/* Gradient overlays */
+.gradient-top {
+  @apply absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-96 blur-[100px] pointer-events-none;
+  background: radial-gradient(
+    circle,
+    var(--color-yellow) 0%,
+    var(--color-yellow-dark) 50%,
+    transparent 100%
+  );
+}
+
+.gradient-bottom {
+  @apply absolute bottom-0 right-0 w-96 h-96 blur-[100px] pointer-events-none;
+  background: radial-gradient(
+    circle,
+    var(--color-yellow) 0%,
+    var(--color-yellow-dark) 50%,
+    transparent 100%
+  );
+}
+
+/* Typography */
+.neon-text {
+  @apply font-bold tracking-wider;
+  text-shadow: 0 0 10px var(--color-yellow),
+              0 0 20px var(--color-yellow),
+              0 0 30px var(--color-yellow);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-yellow-400/30 rounded-full;
+  @apply hover:bg-yellow-400/50 transition-colors;
+}
+
+/* Existing styles preserved */
+body {
+  @apply bg-dark-900 text-white min-h-screen;
+}
+
+.leaflet-container {
+  @apply w-full h-full bg-dark-900;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply bg-dark-100/95 text-white border border-yellow-400/20 rounded-lg;
+}
+
+.leaflet-popup-tip {
+  @apply bg-dark-100/95 border border-yellow-400/20;
+}
+
+.custom-popup .leaflet-popup-content {
+  @apply m-0;
+}
+
+.leaflet-control-zoom a {
+  @apply bg-dark-100/90 text-yellow-400 border border-yellow-400/20;
+}
+
+.leaflet-control-zoom a:hover {
+  @apply bg-yellow-400/10;
+}
+
+.leaflet-control-attribution {
+  @apply bg-dark-100/70 text-yellow-400;
+}
+
+.leaflet-control-attribution a {
+  @apply text-yellow-400;
+}
+
+.custom-marker {
+  @apply relative;
+}
+
+.marker-pin {
+  @apply w-[30px] h-[30px] bg-yellow-400 border-2 border-dark-900 rounded-full transform -rotate-45 absolute;
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+}
+
+.marker-pin::after {
+  content: '';
+  @apply w-[14px] h-[14px] bg-dark-900 rounded-full absolute;
+  top: 50%;
+  left: 50%;
+  margin: -7px 0 0 -7px;
+}
+
+.fixed-header {
+  @apply fixed top-0 left-0 right-0 z-50 bg-dark-900;
+}
+
+.header-offset {
+  @apply pt-[88px];
+}
+
+/* Dashboard specific styles */
+@layer components {
+  .dashboard-card {
+    @apply glass-card p-6 hover:border-yellow-400/30 transition-all duration-300;
+  }
+  
+  .dashboard-title {
+    @apply text-yellow-400 text-sm mb-2 font-medium glow-text;
+  }
+  
+  .dashboard-value {
+    @apply text-2xl font-bold text-white mb-4;
+  }
+  
+  .dashboard-chart {
+    @apply h-24 bg-dark-900 rounded-lg;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 text-yellow-400/60 hover:text-yellow-400 transition-colors rounded-lg;
+  }
+
+  .sidebar-link-active {
+    @apply flex items-center gap-3 px-4 py-3 bg-yellow-400 text-black rounded-lg font-medium;
+  }
+
+  .action-button {
+    @apply flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400/10 text-yellow-400 hover:bg-yellow-400/20 transition-colors;
+  }
+
+  .primary-button {
+    @apply tech-button text-black font-medium;
+  }
+
+  .progress-bar {
+    @apply w-full h-3 bg-dark-900 rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full tech-gradient rounded-full transition-all duration-500;
+  }
+
+  .input-field {
+    @apply tech-input w-full;
+  }
+
+  .modal-container {
+    @apply fixed inset-0 bg-dark-900/50 backdrop-blur-sm flex items-center justify-center z-50;
+  }
+
+  .modal-content {
+    @apply glass-card p-6 max-w-lg w-full;
+  }
+}
